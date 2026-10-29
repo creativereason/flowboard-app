@@ -16,7 +16,7 @@
   --over-border: #0369a1;
   --avatar: #6366f1;
   --overlay: rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card: none;
   --shadow-modal: 0 20px 12.5px rgba(0, 0, 0, 0.1), 0 8px 5px rgba(0, 0, 0, 0.1);
   --shadow-form: 0 10px 7.5px rgba(0, 0, 0, 0.1), 0 4px 3px rgba(0, 0, 0, 0.1);
   --badge-high-bg: #fde2e2; --badge-high-fg: #b42318;
@@ -43,7 +43,7 @@
   --over-border: #38bdf8;
   --avatar: #6366f1;
   --overlay: rgba(0, 0, 0, 0.7);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: none;
   --shadow-modal: 0 20px 12.5px rgba(0, 0, 0, 0.5), 0 8px 5px rgba(0, 0, 0, 0.5);
   --shadow-form: 0 10px 7.5px rgba(0, 0, 0, 0.5), 0 4px 3px rgba(0, 0, 0, 0.5);
   --badge-high-bg: #4a1d1d; --badge-high-fg: #fca5a5;
@@ -65,7 +65,7 @@ button, input, select { font-family: inherit; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 #board:focus { outline: none; }
 .required-note { margin: 0; font-size: 12px; color: var(--muted); }
-.card-title { display: block; width: 100%; border: 0; background: none; padding: 0; margin: 0; font: inherit; color: inherit; text-align: left; text-transform: uppercase; cursor: pointer; }
+.card-title { display: block; width: 100%; border: 0; background: none; padding: 0; margin: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
 .card-title:hover { text-decoration: underline; }
 .card-move { margin-top: 8px; width: 100%; min-height: 28px; font-size: 12px; color: var(--muted); background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px; padding: 2px 28px 2px 8px; appearance: none; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 15px) 50%, calc(100% - 10px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
 .tab[aria-pressed='true'] { background: var(--card); color: var(--text); box-shadow: 0 1px 1.5px rgba(0, 0, 0, .1), 0 1px 1px rgba(0, 0, 0, .1); }
@@ -75,9 +75,9 @@ button, input, select { font-family: inherit; }
 .brand { display: flex; align-items: center; gap: 8px; font-size: 16px; }
 .logo { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--primary); }
 .logo.lg { width: 48px; height: 48px; border-radius: 14px; }
-.subbar { padding: 16px 32px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 12px; }
+.subbar { min-height: 69px; padding: 16px 32px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
 .subbar .crumb { font-size: 16px; font-weight: 500; color: var(--muted); }
-.subbar h1 { margin: 0; font-size: 24px; font-weight: 500; letter-spacing: .07px; }
+.subbar h1 { margin: 0; font-size: 24px; font-weight: 500; line-height: 36px; letter-spacing: .07px; }
 .subbar .sep, .subbar .count-label { color: var(--muted); }
 .header-actions { display: flex; gap: 12px; align-items: center; }
 .avatar { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--avatar); color: #fff; font-size: 12px; font-weight: 500; }
@@ -131,14 +131,15 @@ button, input, select { font-family: inherit; }
 /* Modal + forms */
 .overlay { position: fixed; inset: 0; background: var(--overlay); display: grid; place-items: center; padding: 16px; }
 .modal { max-height: 100%; overflow-y: auto; background: var(--card); border-radius: 16px; padding: 24px; width: 100%; max-width: 512px; display: flex; flex-direction: column; gap: 16px; box-shadow: var(--shadow-modal); }
-.modal-head { display: flex; justify-content: space-between; align-items: center; }
+.modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .modal h2 { margin: 0; font-size: 18px; font-weight: 500; line-height: 28px; letter-spacing: -.44px; }
 .icon-btn { border: 0; background: none; padding: 2px; display: grid; place-items: center; line-height: 0; color: var(--muted); cursor: pointer; }
 .icon-btn:hover { color: var(--text); }
 .field { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 500; letter-spacing: -.15px; }
 .field.small { font-size: 12px; font-weight: 500; letter-spacing: .3px; text-transform: uppercase; color: var(--muted); }
-.field input, .field select { padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg); color: var(--text); font-size: 16px; font-weight: 400; letter-spacing: -.3125px; text-transform: none; }
-.field select { appearance: none; padding-right: 40px; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.field input, .field select { min-height: 38px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg); color: var(--text); font-size: 16px; font-weight: 400; letter-spacing: -.3125px; text-transform: none; }
+.field select { appearance: none; padding-top: 8px; padding-bottom: 8px; padding-right: 40px; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.field input:not([type='date']) { min-height: 46px; }
 .field input::placeholder { color: var(--muted); }
 .field input:focus, .field select:focus { background-color: var(--input-focus-bg); border-color: transparent; outline: 2px solid var(--focus); outline-offset: 1px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
