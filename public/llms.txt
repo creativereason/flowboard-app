@@ -1,0 +1,12 @@
+# FlowBoard
+
+> FlowBoard is a simple kanban task board. Sign in to organize work as cards across four columns: Backlog, In Progress, In Review and Done.
+
+## What it does
+- Create cards with a title, assignee, priority (High, Medium, Low) and due date.
+- Move cards between columns by drag and drop or with a keyboard-accessible "Move to" menu.
+- Syncs in real time across devices for each signed-in user; boards are private to the account.
+- Light and dark themes, and keyboard and screen-reader support (WCAG 2.2 AA).
+
+## Notes for AI agents
+- Board content is private and requires authentication; only the sign-in page is public.
